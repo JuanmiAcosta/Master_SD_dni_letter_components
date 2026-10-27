@@ -1,0 +1,151 @@
+openapi: 3.1.0
+info:
+  title: API DNI
+  description: Microservicio para calcular la letra y validar el DNI español.
+  version: 1.0.0
+paths:
+  /dni/{numero}:
+    post:
+      tags:
+      - dni
+      summary: Calcula la letra de un DNI
+      description: Devuelve la letra de control correspondiente al número indicado.
+      operationId: calcular_letra_dni__numero__post
+      parameters:
+      - name: numero
+        in: path
+        required: true
+        schema:
+          type: integer
+          maximum: 99999999
+          minimum: 0
+          description: Parte numérica del DNI (0 - 99999999)
+          examples:
+          - 12345678
+          title: Numero
+        description: Parte numérica del DNI (0 - 99999999)
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LetraRespuesta'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+  /dni/validar:
+    get:
+      tags:
+      - dni
+      summary: Valida un DNI completo
+      description: Indica si el DNI tiene formato correcto y la letra coincide con
+        el número.
+      operationId: validar_dni_dni_validar_get
+      parameters:
+      - name: dni
+        in: query
+        required: true
+        schema:
+          type: string
+          description: 'DNI completo: 8 dígitos y letra'
+          examples:
+          - 12345678Z
+          title: Dni
+        description: 'DNI completo: 8 dígitos y letra'
+      responses:
+        '200':
+          description: Successful Response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidacionRespuesta'
+        '422':
+          description: Validation Error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HTTPValidationError'
+components:
+  schemas:
+    HTTPValidationError:
+      properties:
+        detail:
+          items:
+            $ref: '#/components/schemas/ValidationError'
+          type: array
+          title: Detail
+      type: object
+      title: HTTPValidationError
+    LetraRespuesta:
+      properties:
+        numero:
+          type: integer
+          title: Numero
+          examples:
+          - 12345678
+        letra:
+          type: string
+          maxLength: 1
+          minLength: 1
+          title: Letra
+          examples:
+          - Z
+        dni:
+          type: string
+          title: Dni
+          description: DNI completo con 8 dígitos
+          examples:
+          - 12345678Z
+      type: object
+      required:
+      - numero
+      - letra
+      - dni
+      title: LetraRespuesta
+    ValidacionRespuesta:
+      properties:
+        dni:
+          type: string
+          title: Dni
+          examples:
+          - 12345678Z
+        valido:
+          type: boolean
+          title: Valido
+          examples:
+          - true
+      type: object
+      required:
+      - dni
+      - valido
+      title: ValidacionRespuesta
+    ValidationError:
+      properties:
+        loc:
+          items:
+            anyOf:
+            - type: string
+            - type: integer
+          type: array
+          title: Location
+        msg:
+          type: string
+          title: Message
+        type:
+          type: string
+          title: Error Type
+        input:
+          title: Input
+        ctx:
+          type: object
+          title: Context
+      type: object
+      required:
+      - loc
+      - msg
+      - type
+      title: ValidationError

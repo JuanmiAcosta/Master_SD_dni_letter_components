@@ -1,0 +1,76 @@
+# =============================================================================
+#  GENERAL (sistema operativo y editores)
+# =============================================================================
+.DS_Store
+Thumbs.db
+*~
+*.swp
+*.swo
+.vscode/
+.idea/
+*.iml
+
+
+# =============================================================================
+#  PYTHON  (microservicio_python/)
+# =============================================================================
+# Entornos virtuales
+.venv/
+venv/
+env/
+
+# Bytecode y cachés
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Empaquetado
+*.egg-info/
+dist/
+
+# Variables de entorno locales
+.env
+
+
+# =============================================================================
+#  C++  (libreria_cpp/)
+# =============================================================================
+# Directorios de compilación (CMake)
+build/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Objetos, librerías y ejecutables
+*.o
+*.obj
+*.so
+*.so.*
+*.a
+*.dll
+*.dylib
+*.exe
+libreria_cpp/prueba
+
+# NOTA: la documentación generada por Doxygen (libreria_cpp/docs/html)
+# NO se ignora porque forma parte del entregable.
+
+
+# =============================================================================
+#  JAVA  (libreria_java/)
+# =============================================================================
+# Clases compiladas y salida de compilación
+*.class
+out/
+target/
+# (las carpetas build/ ya se ignoran en la sección de C++)
+
+# Logs de la JVM
+hs_err_pid*.log
+
+# NOTA: la documentación generada por Javadoc (libreria_java/docs/javadoc)
+# y el .jar de la librería NO se ignoran porque forman parte del entregable.
