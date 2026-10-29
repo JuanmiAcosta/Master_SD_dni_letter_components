@@ -1,0 +1,42 @@
+# Doxyfile para la librería dni_utils.
+# Ejecutar desde libreria_cpp/docs:   doxygen Doxyfile
+# (o desde CMake:                     cmake --build build --target docs)
+# Las opciones no indicadas toman su valor por defecto.
+
+#---------------------------------------------------------------------------
+# Proyecto
+#---------------------------------------------------------------------------
+PROJECT_NAME           = "dni_utils"
+PROJECT_NUMBER         = 1.0.0
+PROJECT_BRIEF          = "Librería C++ para calcular y validar el DNI español"
+OUTPUT_DIRECTORY       = .
+OUTPUT_LANGUAGE        = Spanish
+INPUT_ENCODING         = UTF-8
+FULL_PATH_NAMES        = YES
+STRIP_FROM_PATH        = ..
+
+#---------------------------------------------------------------------------
+# Entrada
+#---------------------------------------------------------------------------
+INPUT                  = ../src ../client
+FILE_PATTERNS          = *.h *.cpp
+RECURSIVE              = NO
+EXAMPLE_PATH           = ../client
+
+#---------------------------------------------------------------------------
+# Extracción
+#---------------------------------------------------------------------------
+EXTRACT_ALL            = NO
+EXTRACT_STATIC         = YES
+WARN_IF_UNDOCUMENTED   = YES
+WARN_NO_PARAMDOC       = YES
+
+#---------------------------------------------------------------------------
+# Salida
+#---------------------------------------------------------------------------
+GENERATE_HTML          = YES
+HTML_OUTPUT            = html
+GENERATE_LATEX         = NO
+SOURCE_BROWSER         = YES
+GENERATE_TREEVIEW      = YES
+HAVE_DOT               = NO
