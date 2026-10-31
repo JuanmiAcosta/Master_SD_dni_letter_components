@@ -74,3 +74,5 @@ hs_err_pid*.log
 
 # NOTA: la documentación generada por Javadoc (libreria_java/docs/javadoc)
 # y el .jar de la librería NO se ignoran porque forman parte del entregable.
+!libreria_java/build/
+libreria_java/build/classes/
